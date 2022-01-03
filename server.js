@@ -79,19 +79,13 @@ function actionPrompt() {
 
 function viewDepartments() {
     console.log("Viewing all departments");
-    const select = `SELECT * FROM department`;
-
-    connection
-        .promise()
-        .query(select)
+    DBMNGMT.selectDepartments()
         .then(([rows]) => {
-            console.table(rows);
+            let departments = rows
+            console.table(departments);
             actionPrompt();
-        })
-        .catch((err) => {
-            console.log(err);
-        })
-}
+        });
+    };
 
 function viewRoles() {
     console.log("Viewing all roles!")
