@@ -183,11 +183,11 @@ function addEmployee() {
     DBMNGMT.selectRoles()
     .then(([rows]) => {
         let roles = rows;
-        const roleChoices = roles.map(({ id, name }) => ({
-            name: name,
+        const roleChoices = roles.map(({ id, title }) => ({
+            name: title,
             value: id
         }))
-    })
+
 
     inquirer
     .prompt([
@@ -212,6 +212,8 @@ function addEmployee() {
         DBMNGMT.createEmployee(res)
         console.log("Added a new employee!");
         actionPrompt();
+
+        })
     })
 }
 
