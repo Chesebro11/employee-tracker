@@ -66,6 +66,12 @@ function actionPrompt() {
                 viewDepartments();
                 break;
             }
+
+            switch(pick) {
+                case"view roles":
+                viewRoles();
+                break;
+            }
         });
 }
 
@@ -87,10 +93,18 @@ function viewDepartments() {
 
 function viewRoles() {
     console.log("Viewing all roles!")
-    // sql command
+    const select = `SELECT * FROM role`
 
     connection
-    // .promise stuff ()
+        .promise()
+        .query(select)
+        .then(({rows}) => {
+            console.table(rows);
+            actionPrompt();
+        })
+        .catch((err) => {
+            console.log(err);
+        })
 
 }
 

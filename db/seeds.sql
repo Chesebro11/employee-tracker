@@ -18,13 +18,13 @@ VALUES
     ('Human Resources Manager', 20, 4);
 
 INSERT INTO employee
-    (first_name, last_name, role_id, manager_id)
+    (first_name, last_name, role_id)
 VALUES
-    ('Harry', 'Potter', 1, 1),
-    ('Hermoine', 'Granger', 2, NULL),
-    ('Ronald', 'Weasley', 3, 2),
-    ('Severus', 'Snape', 4, NULL),
-    ('Albus', 'Dumbledore', 5, 3),
-    ('Draco', 'Malfoy', 6, NULL),
-    ('Lord', 'Voldemort', 7, NULL),
-    ('Tom', 'Riddle', 8, 4);
+    ('Harry', 'Potter', 1 ),
+    ('Hermoine', 'Granger', 2),
+    ('Ronald', 'Weasley', 3),
+    ('Severus', 'Snape', 4),
+    ('Albus', 'Dumbledore', 5),
+    ('Draco', 'Malfoy', 6),
+    ('Lord', 'Voldemort', 7),
+    ('Tom', 'Riddle', 8);
