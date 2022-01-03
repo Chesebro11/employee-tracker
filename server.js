@@ -99,18 +99,12 @@ function viewRoles() {
 
 function viewEmployees() {
     console.log("Viewing all employees");
-    const select = `SELECT * FROM employee`
-
-    connection
-    .promise()
-    .query(select)
-    .then(([rows]) => {
-        console.table(rows);
-        actionPrompt();
-    })
-    .catch((err) => {
-        console.log(err);
-    })
+    DBMNGMT.selectEmployees()
+        .then(([rows]) => {
+            let employees = rows
+            console.table(employees);
+            actionPrompt
+        })
 }
 
 function addDepartment() {

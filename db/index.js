@@ -17,6 +17,10 @@ class DBMNGMT {
     selectRoles() {
         return this.connection.promise().query("SELECT * FROM role");
     }
+
+    selectEmployees() {
+        return this.connection.promise().query("SELECT * FROM employee");
+    }
 }
 
 module.exports = new DBMNGMT(connection);
