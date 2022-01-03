@@ -17,7 +17,7 @@
 // THEN I am prompted to select an employee to update and their new role and this information is updated in the database 
 
 const inquirer = require('inquirer');
-const dbFunction = require('./db')
+const DBMNGMT = require('./db')
 const consoleTable = require('console.table');
 
 
@@ -136,9 +136,8 @@ function addDepartment() {
     ])
     .then(res => {
         console.log(res)
-        dbFunction.createDepartment(res)
+        DBMNGMT.createDepartment(res)
     });
-    
 }
 
 
