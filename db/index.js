@@ -21,6 +21,10 @@ class DBMNGMT {
     selectEmployees() {
         return this.connection.promise().query("SELECT * FROM employee");
     }
+
+    createRole(role) {
+        return this.connection.promise().query("INSERT INTO role SET ?", role)
+    }
 }
 
 module.exports = new DBMNGMT(connection);

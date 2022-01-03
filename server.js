@@ -19,6 +19,7 @@
 const inquirer = require('inquirer');
 const DBMNGMT = require('./db')
 const consoleTable = require('console.table');
+const db = require('./db');
 
 
 
@@ -74,6 +75,12 @@ function actionPrompt() {
                 addDepartment();
                 break;
             }
+
+            switch(pick) {
+                case"add a role":
+                addRole();
+                break;
+            }
         });
 }
 
@@ -103,7 +110,7 @@ function viewEmployees() {
         .then(([rows]) => {
             let employees = rows
             console.table(employees);
-            actionPrompt
+            actionPrompt();
         })
 }
 
@@ -126,11 +133,42 @@ function addDepartment() {
 
 
 function addRole() {
-    // inquirer prompt
 
-    //.then
+    DBMNGMT.selectDepartments()
+    .then(([rows]) => {
+        let departments = rows;
+        const departmentChoices = departments.map(({ id, name }) => ({
+            name: name,
+            value: id
+        }));
+    
+    inquirer
+    .prompt([
+        {
+            type: 'input',
+            name: 'title',
+            message: 'Please enter the title of the Role'
+        },
+        {
+            type: 'input',
+            name: "salary",
+            mesage: "Please input the Salary"
 
-    //promise
+        },
+        {
+            type: 'list',
+            name: 'department_id',
+            message: "Please select which department this role belongs to",
+            choices: departmentChoices
+
+        }
+    ])
+    .then(res => {
+        DBMNGMT.createRole(res)
+        console.log("Created a new role!");
+        actionPrompt();
+    })
+})
 
 }
 
