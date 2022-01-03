@@ -26,6 +26,10 @@ npm start
 
 [walkthrough]
 
+# Created By
+
+Jared Chesebro'
+
 # Screenshots
 
 <img>
