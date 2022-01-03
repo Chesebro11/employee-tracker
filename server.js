@@ -81,6 +81,12 @@ function actionPrompt() {
                 addRole();
                 break;
             }
+
+            switch(pick) {
+                case"add an employee":
+                addEmployee();
+                break;
+            }
         });
 }
 
@@ -173,11 +179,40 @@ function addRole() {
 }
 
 function addEmployee() {
-    // inquirer prompt
+    
+    DBMNGMT.selectRoles()
+    .then(([rows]) => {
+        let roles = rows;
+        const roleChoices = roles.map(({ id, name }) => ({
+            name: name,
+            value: id
+        }))
+    })
 
-    //.then
-
-    //promise
+    inquirer
+    .prompt([
+        {
+            type: 'input',
+            name: 'first_name',
+            message: "What is the employees first name?"
+        },
+        {
+            type: "input",
+            name: "last_name",
+            message: "What is the employees last name?"
+        },
+        {
+            type: 'list',
+            name: 'role_id',
+            message: "Please select the employees role",
+            choices: roleChoices
+        }
+    ])
+    .then(res => {
+        DBMNGMT.createEmployee(res)
+        console.log("Added a new employee!");
+        actionPrompt();
+    })
 }
 
 function updateRole() {

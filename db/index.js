@@ -22,6 +22,10 @@ class DBMNGMT {
         return this.connection.promise().query("SELECT * FROM employee");
     }
 
+    createEmployee(employee) {
+        return this.connection.promise().query("INSERT INTO employee SET ?", employee)
+    }
+
     createRole(role) {
         return this.connection.promise().query("INSERT INTO role SET ?", role)
     }
