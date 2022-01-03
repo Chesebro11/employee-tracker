@@ -1,0 +1,30 @@
+DROP TABLE IF EXISTS employee;
+DROP TABLE IF EXISTS role;
+DROP TABLE IF EXISTS department;
+
+USE DB12;
+
+CREATE TABLE department (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(30) UNIQUE NOT NULL
+);
+
+CREATE TABLE role (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(30) UNIQUE NOT NULL,
+    salary DECIMAL UNSIGNED NOT NULL,
+    department_id INT UNSIGNED NOT NULL,
+    INDEX dep_ind (department_id),
+    CONSTRAINT fk_department FOREIGN KEY (department_id) REFRENCES department(id) ON DELETE CASCADE
+);
+
+CREATE TABLE employee (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(30) NOT NULL,
+    last_name VARCHAR(30) NOT NULL,
+    role_id INTEGER UNSIGNED NOT NULL,
+    CONSTRAINT fk_rule FOREIGN KEY (role_id) REFRENCES role(id) ON DELETE CASCADE,
+    manager_id INTEGER UNSIGNED,
+        INDEX man_id (manager_id),
+    CONSTRAINT fk_manager FOREIGN KEY (manager_id) REFRENCES employee(id) ON DELETE SET NULL
+);
