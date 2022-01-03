@@ -137,6 +137,8 @@ function addDepartment() {
     .then(res => {
         console.log(res)
         DBMNGMT.createDepartment(res)
+        console.log("Added new database!");
+        actionPrompt();
     });
 }
 
