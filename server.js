@@ -228,9 +228,9 @@ function updateRole() {
     .then(([rows]) => {
         let employees = rows;
         const employeeChoices = employees.map(({ id, first_name, last_name }) => ({
-            first_name = first,
-            last_name = last,
-            value = id
+            first: first_name,
+            last: last_name,
+            value: id
         }))
 
         inquirer.prompt([
