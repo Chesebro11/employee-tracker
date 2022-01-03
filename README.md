@@ -24,12 +24,8 @@ npm start
 
 # Links
 
-[walkthrough]
+[walkthrough] https://watch.screencastify.com/v/MQscjLLf0VuGgMO83tim
 
 # Created By
 
 Jared Chesebro'
-
-# Screenshots
-
-<img>
