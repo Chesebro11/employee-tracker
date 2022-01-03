@@ -16,22 +16,11 @@
 // WHEN I choose to update an employee role
 // THEN I am prompted to select an employee to update and their new role and this information is updated in the database 
 
-const mysql = require('mysql2');
 const inquirer = require('inquirer');
-const dbFunction = require('./db/index')
+const dbFunction = require('./db')
 const consoleTable = require('console.table');
 
-const connection = mysql.createConnection({
-    database: "db12",
-    host: "localhost",
-    user: 'root',
-    password: 'J147c14z!',
-})
 
-connection.connect((err) => {
-    if (err) throw err;
-    console.log("Connected");
-});
 
 function actionPrompt() {
     console.log('===============');
@@ -180,5 +169,3 @@ function updateRole() {
 }
 
 actionPrompt();
-
-module.exports = {connection};

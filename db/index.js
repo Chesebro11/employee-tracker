@@ -1,8 +1,8 @@
 // CREATE FUNCTION GO HERE????
-const connection = require("../server")
+const connection = require("./connection")
 
-function createDepartment(res) {
-    return this.connection.promise().query("INSERT INTO department SET ?", res);
-}
+function createDepartment(department) {
+    return this.connection.promise().query("INSERT INTO department SET ?", department);
+  }
 
-module.exports = { createDepartment }
+module.exports = new dbFunction (connection);
