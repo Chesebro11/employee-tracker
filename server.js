@@ -31,3 +31,79 @@ connection.connect((err) => {
     if (err) throw err;
     console.log("Connected");
 });
+
+const actionPrompt = () => {
+
+    // create inquirer prompt so user can select which action they want to do,
+    // view departments
+    // view coles
+    // view employees
+    // add a department
+    // add a role
+    // ad an employee
+    // update an employees role
+
+    // pass selection into var 
+
+    // compare var to different functions for switching
+}
+
+function viewDepartments() {
+    console.log("Viewing all departments");
+    // sql command
+
+    connection
+    // .promise stuff ()
+}
+
+function viewRoles() {
+    console.log("Viewing all roles!")
+    // sql command
+
+    connection
+    // .promise stuff ()
+
+}
+
+function viewEmployees() {
+    console.log("Viewing all employees");
+    // sql command
+
+    connection
+    // .promise stuff ()
+}
+
+function addDepartment() {
+    // inquirer prompt
+
+    //.then
+
+    //promise
+
+}
+
+function addRole() {
+    // inquirer prompt
+
+    //.then
+
+    //promise
+
+}
+
+function addEmployee() {
+    // inquirer prompt
+
+    //.then
+
+    //promise
+}
+
+function updateRole() {
+    // inquirer prompt
+
+    //.then
+
+    //promise
+
+}
