@@ -98,14 +98,13 @@ function viewRoles() {
     connection
         .promise()
         .query(select)
-        .then(({rows}) => {
+        .then(([rows]) => {
             console.table(rows);
             actionPrompt();
         })
         .catch((err) => {
             console.log(err);
         })
-
 }
 
 function viewEmployees() {
