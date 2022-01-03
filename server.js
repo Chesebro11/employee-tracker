@@ -21,8 +21,8 @@ const inquirer = require('inquirer');
 const consoleTable = require('console.table');
 
 const connection = mysql.createConnection({
+    database: "db12",
     host: "localhost",
-    port: 3306,
     user: 'root',
     password: 'J147c14z!',
 })
@@ -32,20 +32,35 @@ connection.connect((err) => {
     console.log("Connected");
 });
 
-const actionPrompt = () => {
+function actionPrompt() {
+    console.log('===============');
+    console.log("|  Database12  |");
+    console.log("|              |");
+    console.log("===============");
+    console.log("Start Employee Tracker 3000");
 
-    // create inquirer prompt so user can select which action they want to do,
-    // view departments
-    // view coles
-    // view employees
-    // add a department
-    // add a role
-    // ad an employee
-    // update an employees role
-
-    // pass selection into var 
-
-    // compare var to different functions for switching
+    inquirer
+        .prompt([
+            {
+                type: "list",
+                name: "choices",
+                message: "What would you like to do?",
+                choices: [
+                    "view departments",
+                    "view roles",
+                    "view employees",
+                    "add a department",
+                    "add a role",
+                    "add an employee",
+                    "update an employees role",
+                    "quit",
+                ],
+            },
+        ])
+        .then((res) => {
+            let pick = res.choices;
+            console.log(pick);
+        });
 }
 
 function viewDepartments() {
@@ -107,3 +122,5 @@ function updateRole() {
     //promise
 
 }
+
+actionPrompt();
