@@ -20,6 +20,10 @@ const mysql = require('mysql2');
 const inquirer = require('inquirer');
 const consoleTable = require('console.table');
 
+function createDepartment(department) {
+    return this.connection.promise().query("INSERT INTO department SET?", department)
+}
+
 const connection = mysql.createConnection({
     database: "db12",
     host: "localhost",
@@ -78,6 +82,12 @@ function actionPrompt() {
                 viewEmployees();
                 break;
             }
+            
+            switch(pick) {
+                case"add a department":
+                addDepartment();
+                break;
+            }
         });
 }
 
@@ -130,7 +140,20 @@ function viewEmployees() {
 }
 
 function addDepartment() {
-    // inquirer prompt
+    inquirer
+    .prompt([
+        {
+            type: 'input',
+            name: 'name',
+            message: "Please enter the name of the department",
+        },
+    ])
+    .then((res) => {
+        console.log(res);
+        const department = res;
+        console.log(department);
+        createDepartment(department);
+    });
 
     //.then
 
