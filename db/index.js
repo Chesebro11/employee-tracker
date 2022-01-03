@@ -31,7 +31,7 @@ class DBMNGMT {
     }
 
     updateEmployee(employee_id, role_id) {
-        return this.connection.promise().query("INSERT INTO EMPLOYEE ?", employee)
+        return this.connection.promise().query("UPDATE employee SET role_id = ? WHERE id = ?", [employee_id, role_id])
     }
 }
 

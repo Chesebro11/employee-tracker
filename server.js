@@ -228,21 +228,20 @@ function updateRole() {
     .then(([rows]) => {
         let employees = rows;
         const employeeChoices = employees.map(({ id, first_name, last_name }) => ({
-            first: first_name,
-            last: last_name,
+            name: `${first_name} ${last_name}`,
             value: id
         }))
 
         inquirer.prompt([
             {
                 type: 'list',
-                name: 'which_employee',
+                name: 'employee_id',
                 message: 'Which employee would you like to update?',
                 choices: employeeChoices
             }
         ])
         .then(res => {
-            let employeeID = res.choices.value
+            let employeeID = res.value
             DBMNGMT.selectRoles()
             .then(([rows]) => {
                 let roles = rows;
@@ -259,7 +258,7 @@ function updateRole() {
                         choices: roleChoices
                     }
                 ])
-                DBMNGMT.updateEmployee(employeeID, res.role.id)
+                DBMNGMT.updateEmployee(employeeID, res.id)
                 console.log("Employee updated!");
                 actionPrompt();
             })
