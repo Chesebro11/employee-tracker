@@ -225,45 +225,48 @@ function addEmployee() {
 
 function updateRole() {
     DBMNGMT.selectEmployees()
-    .then(([rows]) => {
+      .then(([rows]) => {
         let employees = rows;
         const employeeChoices = employees.map(({ id, first_name, last_name }) => ({
-            name: `${first_name} ${last_name}`,
-            value: id
-        }))
+          name: `${first_name} ${last_name}`,
+          value: id
+        }));
 
-        inquirer.prompt([
-            {
-                type: 'list',
-                name: 'employee_id',
-                message: 'Which employee would you like to update?',
-                choices: employeeChoices
-            }
+        inquirer
+        .prompt([
+          {
+            type: "list",
+            name: "employeeId",
+            message: "Which employee do you want to update?",
+            choices: employeeChoices
+          }
         ])
-        .then(res => {
-            let employeeID = res.value
+          .then(res => {
+            let employeeId = res.employeeId;
             DBMNGMT.selectRoles()
-            .then(([rows]) => {
+              .then(([rows]) => {
                 let roles = rows;
                 const roleChoices = roles.map(({ id, title }) => ({
-                    name: title,
-                    value: id
+                  name: title,
+                  value: id
                 }));
-
-                inquirer.prompt([
-                    {
-                        type: "list",
-                        name: "role",
-                        message: "Which role belongs to the employee?",
-                        choices: roleChoices
-                    }
+  
+                inquirer
+                .prompt([
+                  {
+                    type: "list",
+                    name: "roleId",
+                    message: "What is the employees new role?",
+                    choices: roleChoices
+                  }
                 ])
-                .then(DBMNGMT.updateEmployee(employeeID, res.value))
-                .then(() => actionPrompt())
-            })
-        })
-    })
-
-}
+                  .then(res => DBMNGMT.updateEmployee(employeeId, res.roleId))
+                  .then(() => console.log("Updated employees role"))
+                  .then(() => actionPrompt())
+              });
+          });
+      })
+  }
+  
 
 actionPrompt();
