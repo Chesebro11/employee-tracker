@@ -18,11 +18,8 @@
 
 const mysql = require('mysql2');
 const inquirer = require('inquirer');
+const dbFunction = require('./db/index')
 const consoleTable = require('console.table');
-
-function createDepartment(department) {
-    return this.connection.promise().query("INSERT INTO department SET?", department)
-}
 
 const connection = mysql.createConnection({
     database: "db12",
@@ -148,18 +145,13 @@ function addDepartment() {
             message: "Please enter the name of the department",
         },
     ])
-    .then((res) => {
-        console.log(res);
-        const department = res;
-        console.log(department);
-        createDepartment(department);
+    .then(res => {
+        console.log(res)
+        dbFunction.createDepartment(res)
     });
-
-    //.then
-
-    //promise
-
+    
 }
+
 
 function addRole() {
     // inquirer prompt
@@ -188,3 +180,5 @@ function updateRole() {
 }
 
 actionPrompt();
+
+module.exports = {connection};
