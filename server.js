@@ -87,6 +87,12 @@ function actionPrompt() {
                 addEmployee();
                 break;
             }
+
+            switch(pick) {
+                case"update an employees role":
+                updateRole();
+                break;
+            }
         });
 }
 
@@ -218,11 +224,47 @@ function addEmployee() {
 }
 
 function updateRole() {
-    // inquirer prompt
+    DBMNGMT.selectEmployees()
+    .then(([rows]) => {
+        let employees = rows;
+        const employeeChoices = employees.map(({ id, first_name, last_name }) => ({
+            first_name = first,
+            last_name = last,
+            value = id
+        }))
 
-    //.then
+        inquirer.prompt([
+            {
+                type: 'list',
+                name: 'which_employee',
+                message: 'Which employee would you like to update?',
+                choices: employeeChoices
+            }
+        ])
+        .then(res => {
+            let employeeID = res.choices.value
+            DBMNGMT.selectRoles()
+            .then(([rows]) => {
+                let roles = rows;
+                const roleChoices = roles.map(({ id, title }) => ({
+                    name: title,
+                    value: id
+                }));
 
-    //promise
+                inquirer.prompt([
+                    {
+                        type: "list",
+                        name: "role",
+                        message: "Which role belongs to the employee?",
+                        choices: roleChoices
+                    }
+                ])
+                DBMNGMT.updateEmployee(employeeID, res.role.id)
+                console.log("Employee updated!");
+                actionPrompt();
+            })
+        })
+    })
 
 }
 
