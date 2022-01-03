@@ -72,6 +72,12 @@ function actionPrompt() {
                 viewRoles();
                 break;
             }
+
+            switch(pick) {
+                case"view employees":
+                viewEmployees();
+                break;
+            }
         });
 }
 
@@ -109,10 +115,18 @@ function viewRoles() {
 
 function viewEmployees() {
     console.log("Viewing all employees");
-    // sql command
+    const select = `SELECT * FROM employee`
 
     connection
-    // .promise stuff ()
+    .promise()
+    .query(select)
+    .then(([rows]) => {
+        console.table(rows);
+        actionPrompt();
+    })
+    .catch((err) => {
+        console.log(err);
+    })
 }
 
 function addDepartment() {
