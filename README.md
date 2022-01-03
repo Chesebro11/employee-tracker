@@ -24,7 +24,7 @@ npm start
 
 # Links
 
-[walkthrough] https://watch.screencastify.com/v/MQscjLLf0VuGgMO83tim
+[walkthrough](https://watch.screencastify.com/v/MQscjLLf0VuGgMO83tim)
 
 # Created By
 
