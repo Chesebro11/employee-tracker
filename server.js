@@ -258,9 +258,8 @@ function updateRole() {
                         choices: roleChoices
                     }
                 ])
-                DBMNGMT.updateEmployee(employeeID, res.id)
-                console.log("Employee updated!");
-                actionPrompt();
+                .then(DBMNGMT.updateEmployee(employeeID, res.value))
+                .then(() => actionPrompt())
             })
         })
     })
