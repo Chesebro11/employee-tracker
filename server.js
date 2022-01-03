@@ -60,15 +60,29 @@ function actionPrompt() {
         .then((res) => {
             let pick = res.choices;
             console.log(pick);
+
+            switch(pick) {
+                case"view departments":
+                viewDepartments();
+                break;
+            }
         });
 }
 
 function viewDepartments() {
     console.log("Viewing all departments");
-    // sql command
+    const select = `SELECT * FROM department`;
 
     connection
-    // .promise stuff ()
+        .promise()
+        .query(select)
+        .then(([rows]) => {
+            console.table(rows);
+            actionPrompt();
+        })
+        .catch((err) => {
+            console.log(err);
+        })
 }
 
 function viewRoles() {
